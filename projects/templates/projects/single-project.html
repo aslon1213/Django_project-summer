@@ -1,0 +1,12 @@
+
+<h1>
+    {{project.title}}
+</h1>
+    <br>
+    <p>{{project.description}}</p>
+
+    <hr>
+        {%for tag in tags%}
+        <span style="border: 1px solid grey;"> {{tag}}</span>
+        {%endfor%}
+    <hr>
