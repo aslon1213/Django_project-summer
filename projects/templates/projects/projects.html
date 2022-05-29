@@ -1,5 +1,5 @@
-
-
+{%extends 'base.html'%}
+{%block content%}
 <table>
     <tr>
         <th>ID</th>
@@ -7,7 +7,9 @@
         <th>Votes</th>
         <th>Vote Ratio</th>
         <th>Created Time</th>
-        <th>Link</th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     {%for project in projects%}
     <tr>
@@ -19,7 +21,14 @@
         <td>
             <a href="{%url 'project' project.id %}">view</a>
         </td>
+        <td>
+            <a href="{%url 'update-project' project.id %}">Edit</a>
+        </td>
+        <td>
+            <a href="{%url 'delete-project' project.id %}">Delete</a>
+        </td>
     </tr>
     {%endfor%}
 
 </table>
+{%endblock%}

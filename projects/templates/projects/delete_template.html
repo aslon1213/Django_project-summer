@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+
+{%block content%}
+<form method="POST", action="">
+    {% csrf_token %}
+    <p>Are you really sure to delete this project ?</p>
+    <button><a href="{% url 'projects' %}">Go Back</a></button>
+    <input type="submit", value="Confirm">
+
+</form>
+{%endblock%}
