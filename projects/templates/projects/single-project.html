@@ -1,4 +1,5 @@
-
+{% extends 'base.html'%}
+{%block content%}
 <h1>
     {{project.title}}
 </h1>
@@ -9,4 +10,6 @@
         {%for tag in tags%}
         <span style="border: 1px solid grey;"> {{tag}}</span>
         {%endfor%}
+        <button><a href="{% url 'projects' %}">Go Back</a></button>
     <hr>
+{%endblock%}

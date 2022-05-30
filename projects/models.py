@@ -1,3 +1,4 @@
+from email.policy import default
 from tarfile import BLKTYPE
 from uuid import UUID
 from django.db import models
@@ -8,7 +9,7 @@ class Project(models.Model):
     """"""
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank = True)
-    
+    #featured_image = models.ImageField(null=True, blank = True, default='1.jpeg')
     #setting relationship with 'TAG'
     tags = models.ManyToManyField('Tag', blank=True)
 
