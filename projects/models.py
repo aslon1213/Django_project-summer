@@ -9,7 +9,7 @@ class Project(models.Model):
     """"""
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank = True)
-    #featured_image = models.ImageField(null=True, blank = True, default='1.jpeg')
+    featured_image = models.ImageField(null=True, blank = True, default='morde.png')
     #setting relationship with 'TAG'
     tags = models.ManyToManyField('Tag', blank=True)
 

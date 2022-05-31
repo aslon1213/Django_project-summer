@@ -1,234 +1,100 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-    <head>
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
-            <title>The Card HTML5 Template by tooplate.com</title>
-            <!--
-        Template 2109 The Card
-        http://www.tooplate.com/view/2109-the-card
-        -->
-            <!-- load CSS -->
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600"
-            />
-            <!-- Google web font "Open Sans" -->
-            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-            <!-- https://getbootstrap.com/ -->
-            <link rel="stylesheet" href="{% static 'slick/slick.css' %}" />
-            <link rel="stylesheet" href="{% static 'slick/slick-theme.css' %}" />
-            <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
-            <link rel="stylesheet" href="{% static 'css/tooplate-style.css' %}" />
-            <!-- Templatemo style -->
-    </head>
-    <body style class="loaded">
-        <!-- Loader -->
-        <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-        </div>
+  <>         
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>PROJECT_WITHOUT_NAME</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        {% include 'navbar.html' %}
-        
-        <div class="tm-main-container">
-            
-            <div class="tm-top-container">
-                {%include 'home.html'%}
-                <!-- Menu -->
-                <nav id="tmNav" class="tm-nav">
-                    <a class="tm-navbar-menu" href="#">Menu</a>
-                    <ul class="tm-nav-links">
-                         <!--a href="#" data-linkid="1" data-align="right" class="tm-nav-link-->
-                    <li class="tm-nav-item active">
-                        <a href="{% url 'projects' %}">Main Menu</a>
-                    </li>
-                    <li class="tm-nav-item">About</a>
-                    </li>
-                    <li class="tm-nav-item">
-                        <a href="{%url 'new-project' %}">Add Project</a>
-                    </li>
-                    </ul>
-                </nav>
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
+
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %} "></script>
+    <script defer src="{% static 'js/fontawesome/all.min.js' %} "></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %} ">
+    <!--<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %} ">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %} ">-->
+    <link rel="manifest" href="site.webmanifest">
+  </head>
+
+
+  <body id="about", class="s-about target-section" >
+    <header class="s-header">
+        <div class="row">
+
+            <div class="s-header__logo">
+                <a href="{% url 'projects' %}">
+                    <img src="{%static 'images/logo.svg'%}" alt="Homepage">
+                </a>
             </div>
-        </div>
+        
+            <nav class="s-header__nav">
+                <ul>
+                    <li><a class="smoothscroll" href="{% url 'projects' %}">Main Menu</a></li>
+                    <li><a class="smoothscroll" href="#portfolio">Portfolio</a></li>
+                    <li><a class="smoothscroll" href="{% url 'new-project' %}">Add Project</a></li>
+                    <li><a class="smoothscroll" href="#about">About Us</a></li>
+                    <li> <a class="smoothscroll" href="#contact">Sign In / Sign Up</a></li>
+                </ul>     
+            </nav>
+        
+            <a class="s-header__menu-toggle" href="#0" title="Menu">
+                <span class="s-header__menu-icon"></span>
+            </a>
+        </div> <!-- end row -->
+    </header> <!-- end s-header -->
+
+
         {%block content%}
         {%endblock%}
 
-        <p>FOOTER</p>
-        <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
-        <script src="{%static 'js/background.cycle.js' %}"></script>
-        <script src="{% static 'slick/slick.min.js'%}"></script>
-        <script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
-        <script>
-          let slickInitDone = false;
-          let previousImageId = 0,
-            currentImageId = 0;
-          let pageAlign = "right";
-          let bgCycle;
-          let links;
-          let eachNavLink;
-    
-          window.onload = function() {
-            $("body").addClass("loaded");
-          };
-    
-          function navLinkClick(e) {
-            if ($(e.target).hasClass("external")) {
-              return;
-            }
-    
-            e.preventDefault();
-    
-            if ($(e.target).data("align")) {
-              pageAlign = $(e.target).data("align");
-            }
-    
-            // Change bg image
-            previousImageId = currentImageId;
-            currentImageId = $(e.target).data("linkid");
-            bgCycle.cycleToNextImage(previousImageId, currentImageId);
-    
-            // Change menu item highlight
-            $(`.tm-nav-item:eq(${previousImageId})`).removeClass("active");
-            $(`.tm-nav-item:eq(${currentImageId})`).addClass("active");
-    
-            // Change page content
-            $(`.tm-section-${previousImageId}`).fadeOut(function(e) {
-              $(`.tm-section-${currentImageId}`).fadeIn();
-              // Gallery
-              if (currentImageId === 2) {
-                setupSlider();
-              }
-            });
-    
-            adjustFooter();
-          }
-    
-          $(document).ready(function() {
-            // Set first page
-            $(".tm-section").fadeOut(0);
-            $(".tm-section-0").fadeIn();
-    
-            // Set Background images
-            // https://www.jqueryscript.net/slideshow/Simple-jQuery-Background-Image-Slideshow-with-Fade-Transitions-Background-Cycle.html
-            bgCycle = $("body").backgroundCycle({
-              imageUrls: [
-                "{% static 'img/photo-02.jpg'%}",
-                "{% static 'img/photo-03.jpg'%}",
-                "{% static 'img/photo-04.jpg'%}",
-                "{% static 'img/photo-05.jpg'%}"
-              ],
-              fadeSpeed: 2000,
-              duration: -1,
-              backgroundSize: SCALING_MODE_COVER
-            });
-    
-            eachNavLink = $(".tm-nav-link");
-            links = $(".tm-nav-links");
-    
-            // "Menu" open/close
-            if (links.hasClass("open")) {
-              links.fadeIn(0);
-            } else {
-              links.fadeOut(0);
-            }
-    
-            $("#tm_about_link").on("click", navLinkClick);
-            $("#tm_work_link").on("click", navLinkClick);
-    
-            // Each menu item click
-            eachNavLink.on("click", navLinkClick);
-    
-            $(".tm-navbar-menu").click(function(e) {
-              if (links.hasClass("open")) {
-                links.fadeOut();
-              } else {
-                links.fadeIn();
-              }
-    
-              links.toggleClass("open");
-            });
-    
-            // window resize
-            $(window).resize(function() {
-              // If current page is Gallery page, set it up
-              if (currentImageId === 2) {
-                setupSlider();
-              }
-    
-              // Adjust footer
-              adjustFooter();
-            });
-    
-            adjustFooter();
-          }); // DOM is ready
-    
-          function adjustFooter() {
-            const windowHeight = $(window).height();
-            const topHeight = $(".tm-top-container").height();
-            const middleHeight = $(".tm-content").height();
-            let contentHeight = topHeight + middleHeight;
-    
-            if (pageAlign === "left") {
-              contentHeight += $(".tm-bottom-container").height();
-            }
-    
-            if (contentHeight > windowHeight) {
-              $(".tm-bottom-container").addClass("tm-static");
-            } else {
-              $(".tm-bottom-container").removeClass("tm-static");
-            }
-          }
-    
-          function setupSlider() {
-            let slidesToShow = 4;
-            let slidesToScroll = 2;
-            let windowWidth = $(window).width();
-    
-            if (windowWidth < 480) {
-              slidesToShow = 1;
-              slidesToScroll = 1;
-            } else if (windowWidth < 768) {
-              slidesToShow = 2;
-              slidesToScroll = 1;
-            } else if (windowWidth < 992) {
-              slidesToShow = 3;
-              slidesToScroll = 2;
-            }
-    
-            if (slickInitDone) {
-              $(".tm-gallery").slick("unslick");
-            }
-    
-            slickInitDone = true;
-    
-            $(".tm-gallery").slick({
-              dots: true,
-              customPaging: function(slider, i) {
-                var thumb = $(slider.$slides[i]).data();
-                return `<a>${i + 1}</a>`;
-              },
-              infinite: true,
-              prevArrow: false,
-              nextArrow: false,
-              slidesToShow: slidesToShow,
-              slidesToScroll: slidesToScroll
-            });
-    
-            // Open big image when a gallery image is clicked.
-            $(".slick-list").magnificPopup({
-              delegate: "a",
-              type: "image",
-              gallery: {
-                enabled: true
-              }
-            });
-          }
-        </script>
+        
+        
+    <!-- footer
+      ================================================== -->
+      <footer class="s-footer">
+          <div class="row">
+              <div class="column large-4 medium-6 w-1000-stack s-footer__social-block">
+                  <ul class="s-footer__social">
+                      <li><a href="#0"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                      <li><a href="#0"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                      <li><a href="#0"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                      <li><a href="#0"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
+                      <li><a href="#0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                  </ul>
+              </div>
+
+              <div class="column large-7 medium-6 w-1000-stack ss-copyright">
+                  <span>© Copyright Kreative 2020</span> 
+                  <span>Design by <a href="https://www.styleshout.com/">StyleShout</a></span>
+              </div>
+          </div>
+          <div class="ss-go-top">
+              <a class="smoothscroll" title="Back to Top" href="#top">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v2H6zm5 10v6h2v-6h5l-6-6-6 6z"/></svg>
+              </a>
+          </div> <!-- end ss-go-top -->
+      </footer>
+
+
+      <!-- Java Script
+      ================================================== -->
+      <script src="js/jquery-3.2.1.min.js"></script>
+      <script src="js/plugins.js"></script>
+      <script src="js/main.js"></script>
     </body>
 </html>

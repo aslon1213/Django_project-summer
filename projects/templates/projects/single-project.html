@@ -1,11 +1,14 @@
+
 {% extends 'base.html'%}
+{%load static%}
 {%block content%}
+<img src="{{project.featured_image.url}}">
 <h1>
     {{project.title}}
 </h1>
     <br>
     <p>{{project.description}}</p>
-
+    
     <hr>
         {%for tag in tags%}
         <span style="border: 1px solid grey;"> {{tag}}</span>

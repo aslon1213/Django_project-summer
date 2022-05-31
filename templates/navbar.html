@@ -1,1 +1,24 @@
+
 {%load static%}
+<div class="row">
+
+    <div class="s-header__logo">
+        <a href="{% url 'projects' %}">
+            <img src="{%static 'images/logo.svg'%}" alt="Homepage">
+        </a>
+    </div>
+
+    <nav class="s-header__nav">
+        <ul>
+            <li><a class="smoothscroll" href="{% url 'projects' %}">Main Menu</a></li>
+            <li><a class="smoothscroll" href="#portfolio">Portfolio</a></li>
+            <li><a class="smoothscroll" href="{% url 'new-project' %}">Add Project</a></li>
+            <li><a class="smoothscroll" href="#about">About Us</a></li>
+            <li> <a class="smoothscroll" href="#contact">Sign In / Sign Up</a></li>
+        </ul>     
+    </nav>
+
+    <a class="s-header__menu-toggle" href="#0" title="Menu">
+        <span class="s-header__menu-icon"></span>
+    </a>
+</div> <!-- end row -->
