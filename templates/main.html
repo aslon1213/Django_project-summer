@@ -47,7 +47,7 @@
                     <li><a class="smoothscroll" href="{% url 'projects' %}">Main Menu</a></li>
                     <li><a class="smoothscroll" href="#portfolio">Portfolio</a></li>
                     {% if request.user.is_authenticated %}
-                    <li><a class="smoothscroll" href="{% url 'update_account' %}"> Account</a></li>
+                    <li><a class="smoothscroll" href="{% url 'account' %}"> Account</a></li>
                     {% endif %}
                     <li><a class="smoothscroll" href="{% url 'profiles' %}">Profiles</a></li>
                     {% if request.user.is_authenticated %}

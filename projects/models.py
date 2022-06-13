@@ -11,6 +11,7 @@ class Project(models.Model):
     owner = models.ForeignKey(
         Profile, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    models.CharField(max_length=150, blank=True, null=True)
     description = models.TextField(null=True, blank = True)
     featured_image = models.ImageField(null=True, blank = True, default='morde.png')
     #setting relationship with 'TAG'

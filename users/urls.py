@@ -1,13 +1,15 @@
-from django.urls import path, reverse
-from .views import *
+from django.urls import path
+from . import views
+
 urlpatterns = [
+    path('login/', views.loginUser, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
+    path('register/', views.registerUser, name="register"),
 
-    path('login/', loginUser, name = 'login'),
-    path('logout/', logoutUser, name = 'logout'),
-    path('registration/', registerUser, name = 'register'),
+    path('', views.profiles, name="profiles"),
+    path('profile/<str:pk>/', views.userProfile, name="single_profile"),
+    path('account/', views.userAccount, name="account"),
 
-    path('', profiles, name = 'profiles'),
-    path('<str:pk>/', userProfile, name='single_profile'),
-    path('account/', userAccount, name = 'account'),
-    path('account_update_form/', editAccount, name = 'update_account'),
+    path('edit-account/', views.editAccount, name="update_account"),
+
 ]

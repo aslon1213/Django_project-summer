@@ -18,7 +18,9 @@ def new_project(request):
     if request.method == "POST":
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            project = form.save(commit=False)
+            project.owner = request.user.profile
+            project.save()
             return redirect('projects')
 
     context = {'form':form}
