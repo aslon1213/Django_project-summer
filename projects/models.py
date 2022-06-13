@@ -1,15 +1,15 @@
 from email.policy import default
-from operator import mod
-from statistics import mode
 from tarfile import BLKTYPE
 from uuid import UUID
-from django.db import models
 import uuid
+from django.db import models
 from users.models import Profile
+
 
 class Project(models.Model):
     """"""
-    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
+    owner = models.ForeignKey(
+        Profile, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank = True)
     featured_image = models.ImageField(null=True, blank = True, default='morde.png')
