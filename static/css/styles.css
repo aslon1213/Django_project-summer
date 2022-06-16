@@ -437,6 +437,8 @@ sup {
 
 img {
     border-style: none;
+    width: 100px;
+    height: 100px;
 }
 
 /* ------------------------------------------------------------------- 
@@ -640,6 +642,8 @@ body {
 svg, img, video embed, iframe, object {
     max-width: 100%;
     height: auto;
+    width: 100px;
+    height: 100px;
 }
 
 /* ------------------------------------------------------------------- 
@@ -688,6 +692,8 @@ a {
 
 a img {
     border: none;
+    width: 100px;
+    height: 100px;
 }
 
 /* ------------------------------------------------------------------- 
@@ -1713,6 +1719,8 @@ h6, .h6 {
 figure img, p img {
     margin: 0;
     vertical-align: bottom;
+    width: 100px;
+    height: 100px;
 }
 
 em, i, strong, b {
@@ -1786,6 +1794,8 @@ figure {
 
 figure img+figcaption {
     margin-top: var(--vspace-1);
+    width: 100px;
+    height: 100px;
 }
 
 figcaption {

@@ -6,14 +6,26 @@
 <main class="home">
     <section class="hero-section text-center">
         <div class="container container--narrow">
-            <div class="hero-section__box">
-                <h2>CONNECT WITH <span>DEVELOPERS</span></h2>
-                <h2>FROM AROUND THE WORLD</h2>
-            </div>
-
-            </div>
+          <div class="hero-section__box">
+            <h2>Search for <span>Projects</span></h2>
+          </div>
+  
+          <div class="hero-section__search">
+            <form class="form" action="{% url 'profiles' %}" method="get">
+              <div class="form__field">
+                <label for="formInput#search">Search By Projects </label>
+                <input class="input input--text" id="formInput#search" type="text" name="search_value" value="{{search_value}}"
+                  placeholder="Search by Project Title" />
+              </div>
+  
+              <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+            </form>
+          </div>
         </div>
-    </section>
+      </section>
+
+
+
     <!-- Search Result: DevList -->
     <section class="devlist">
         <div class="container">

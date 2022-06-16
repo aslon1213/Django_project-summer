@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from .models import Project
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
+from .utils import search_in_projects
+
 def projects(request):
-    projects = Project.objects.all()
-    context = {"projects":projects}
+    projects, search_value = search_in_projects(request)
+    context = {"projects":projects, 'search_value': search_value}
     return render(request, 'projects/projects.html',context)
 
 
