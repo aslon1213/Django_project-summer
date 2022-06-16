@@ -7,4 +7,8 @@ urlpatterns = [
     path('create-project/',new_project, name = "create_project"),
     path('update-project/<str:pk>/', updateProject, name = 'update-project'),
     path('delete-project/<str:pk>/', deleteProject, name = 'delete-project'),
+
+    #skill CRUD
+
+
 ]

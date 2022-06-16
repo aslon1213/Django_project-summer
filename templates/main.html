@@ -45,7 +45,6 @@
             <nav class="s-header__nav">
                 <ul>
                     <li><a class="smoothscroll" href="{% url 'projects' %}">Main Menu</a></li>
-                    <li><a class="smoothscroll" href="#portfolio">Portfolio</a></li>
                     {% if request.user.is_authenticated %}
                     <li><a class="smoothscroll" href="{% url 'account' %}"> Account</a></li>
                     {% endif %}
