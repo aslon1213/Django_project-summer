@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
-from .utils import search_in_profiles
+from .utils import search_in_profiles, paginate_profiles
 
 def loginUser(request):
     page = 'login'
@@ -63,7 +63,8 @@ def registerUser(request):
 
 def profiles(request):
     profiles, search_value = search_in_profiles(request)
-    context = {'profiles': profiles, 'search_value':search_value}
+    profiles, custom_range = paginate_profiles(request, profiles, 3)
+    context = {'profiles': profiles, 'search_value':search_value, 'custom_pagination':custom_range}
     return render(request, 'users/profiles.html', context)
 
 

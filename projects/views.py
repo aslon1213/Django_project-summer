@@ -3,11 +3,14 @@ from django.http import HttpResponse
 from .models import Project
 from .forms import ProjectForm
 from django.contrib.auth.decorators import login_required
-from .utils import search_in_projects
+from .utils import search_in_projects, paginate_projects
 
 def projects(request):
+
     projects, search_value = search_in_projects(request)
-    context = {"projects":projects, 'search_value': search_value}
+    projects, custom_page_range = paginate_projects(request, projects, 5)
+
+    context = {"projects":projects, 'search_value': search_value, 'custom_pagination':custom_page_range}
     return render(request, 'projects/projects.html',context)
 
 

@@ -18,7 +18,7 @@
                             {% if profile.social_github %}
                             <li>
                                 <a title="Github" href="{{profile.social_github}}" target="_blank"><i
-                                        class="im im-github"></i></a>
+                                        class="im im-github">GITHUB</i></a>
                             </li>
                             {% endif %}
 
@@ -26,21 +26,21 @@
                             {% if profile.social_twitter %}
                             <li>
                                 <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"><i
-                                        class="im im-twitter"></i></a>
+                                        class="im im-twitter">TWITTER</i></a>
                             </li>
                             {% endif %}
 
                             {% if profile.social_linkedin %}
                             <li>
                                 <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i
-                                        class="im im-linkedin"></i></a>
+                                        class="im im-linkedin">LINKEDIN</i></a>
                             </li>
                             {% endif %}
 
                             {% if profile.social_website %}
                             <li>
                                 <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i
-                                        class="im im-globe"></i></a>
+                                        class="im im-globe">WEBSITE</i></a>
                             </li>
                             {% endif %}
 
@@ -88,7 +88,7 @@
                         <div class="column">
                             <div class="card project">
                                 <a href="{% url 'project' project.id %}" class="project">
-                                    <img class="project__thumbnail" src="{{project.imageURL}}"
+                                    <img class="project__thumbnail" src="{{project.featured_image.url}}"
                                         alt="project thumbnail" />
                                     <div class="card__body">
                                         <h3 class="project__title">{{project.title}}</h3>
