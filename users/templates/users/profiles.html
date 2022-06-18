@@ -11,7 +11,7 @@
           </div>
   
           <div class="hero-section__search">
-            <form class="form" action="{% url 'profiles' %}" method="get">
+            <form  id="searchForm" class="form" action="{% url 'profiles' %}" method="get">
               <div class="form__field">
                 <label for="formInput#search">Search By Projects </label>
                 <input class="input input--text" id="formInput#search" type="text" name="search_value" value="{{search_value}}"
@@ -65,17 +65,17 @@
     <div class="pagination">
       <ul class="container">
         {% if profiles.has_previous %}  
-        <li><a href="?page={{profiles.previous_page_number}}" class="btn btn--disabled">&#10094; Prev</a></li>
+        <li><a href="?page={{profiles.previous_page_number}}" class="btn btn--disabled" data-page="{{profiles.previous_page_number}}">&#10094; Prev</a></li>
         {% endif %}
         {% for page in custom_pagination %}
           {%if profiles.number == page %}
-          <li><a href="?page={{page}}" class="btn page-link btn--sub">{{page}}</a></li>
+          <li><a href="?page={{page}}" class="btn page-link btn--sub" data-page="{{page}}">{{page}}</a></li>
           {%else%}
-          <li><a href="?page={{page}}" class="btn page-link">{{page}}</a></li>
+          <li><a href="?page={{page}}" class="btn page-link" data-page="{{page}}">{{page}}</a></li>
           {%endif%}
         {% endfor %}
         {% if profiles.has_next %}
-        <li><a href="?page={{profiles.next_page_number}}" class="btn">Next &#10095;</a></li>
+        <li><a href="?page={{profiles.next_page_number}}" class="btn" data-page="{{profiles.next_page_number}}">Next &#10095;</a></li>
         {% endif %}
       </ul>
     </div>

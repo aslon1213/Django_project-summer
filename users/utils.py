@@ -18,12 +18,12 @@ def paginate_profiles(request, profiles, objects_num):
         profiles = paginator.page(page)
     
 
-    left = int(page) - 1
+    left = int(page) - 2
     if left < 1:
         left = 1
-    right = int(page) + 2
+    right = int(page) + 3
     if right > paginator.num_pages:
-        right = paginator.num_pages
+        right = paginator.num_pages + 1
 
     custom_range = range(left,right)
 

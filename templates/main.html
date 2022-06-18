@@ -1,62 +1,50 @@
 <!DOCTYPE html>
 {% load static %}
 <html>    
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>PROJECT_WITHOUT_NAME</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Favicon -->
+  <!-- <link rel="shortcut icon" href="{% static 'images/logo.svg' %}" type="image/x-icon" />
+  Icon - IconMonster 
+  <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
+-->
+  <!-- Mumble UI -->
+  <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
+  <!-- Dev Search UI -->
+  <link rel="stylesheet" href="{% static 'styles/app.css' %}" />
 
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="stylesheet" href="{% static 'css/vendor.css' %}">
-    <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}">
-
-    <!-- script
-    ================================================== -->
-    <script src="{% static 'js/modernizr.js' %} "></script>
-    <script defer src="{% static 'js/fontawesome/all.min.js' %} "></script>
-
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %} ">
-    <!--<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %} ">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %} ">-->
-    <link rel="manifest" href="site.webmanifest">
+  <title>Dev Blogs !</title>
   </head>
-
-
   <body id="about", class="s-about target-section" >
-    <header class="s-header">
-        <div class="row">
-
-            <div class="s-header__logo">
-                <a href="{% url 'projects' %}">
-                    <img src="{%static 'BLOGSPACE.png'%}" alt="Homepage">
-                </a>
-            </div>
-        
-            <nav class="s-header__nav">
-                <ul>
-                    <li><a class="smoothscroll" href="{% url 'projects' %}">Main Menu</a></li>
-                    {% if request.user.is_authenticated %}
-                    <li><a class="smoothscroll" href="{% url 'account' %}"> Account</a></li>
-                    {% endif %}
-                    <li><a class="smoothscroll" href="{% url 'profiles' %}">Profiles</a></li>
-                    {% if request.user.is_authenticated %}
-                        <li> <a class="smoothscroll" href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                        <li> <a class="smoothscroll" href="{% url 'login' %}">Sign In / Sign Up</a></li>
-                    {%endif%}
-                </ul>     
-            </nav>
-
+    <header>
+    <div class="header">
+        <div div class="container container--narrow">
+          <a href="{% url 'profiles' %}" class="header__logo">
+            <img src="{% static 'images/logo.svg' %}" alt="DevSearch Logo" />
+          </a>
+          <nav class="header__nav">
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+              <span>Menu</span>
+              <div class="toggle-menu__lines"></div>
+            </label>
+            <ul class="header__menu">
+              <li class="header__menuItem"><a href="{% url 'profiles' %}">Developers</a></li>
+              <li class="header__menuItem"><a href="{% url 'projects' %}">Projects</a></li>
+              {% if request.user.is_authenticated %}
+              <li class="header__menuItem"><a href="{% url 'account' %}">Inbox</a></li>
+              <li class="header__menuItem"><a href="{% url 'account' %}">My Account</a></li>
+              {%endif%}
+              {%if request.user.is_authenticated %}
+              <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout </a></li>
+              {%else%}
+              <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Sign In / Sign Up </a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div> <!-- end row -->
             {% if messages %}
             <ul class="messages">
                 {% for message in messages%}
@@ -66,11 +54,10 @@
                 {%endfor%}
             </ul>
             {%endif%}
-        
-            <a class="s-header__menu-toggle" href="#0" title="Menu">
+            <a class="s-header__menu-toggle" href="#" title="Menu">
                 <span class="s-header__menu-icon"></span>
             </a>
-        </div> <!-- end row -->
+    </div>  
     </header> <!-- end s-header -->
 
 
@@ -81,7 +68,7 @@
         
     <!-- footer
       ================================================== -->
-      <footer class="s-footer">
+      <!--<footer class="s-footer">
           <div class="row">
               <div class="column large-4 medium-6 w-1000-stack s-footer__social-block">
                   <ul class="s-footer__social">
@@ -91,25 +78,20 @@
                       <li><a href="#0"><i class="fab fa-dribbble" aria-hidden="true"></i></a></li>
                       <li><a href="#0"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
                   </ul>
-              </div>
+              </div>> 
 
               <div class="column large-7 medium-6 w-1000-stack ss-copyright">
-                  <span>© Copyright Kreative 2020</span> 
-                  <span>Design by <a href="https://www.styleshout.com/">StyleShout</a></span>
+                  <span>Designed by <a href="#">Aslon Khamidov in Uzbekiston</a></span>
               </div>
           </div>
           <div class="ss-go-top">
               <a class="smoothscroll" title="Back to Top" href="#top">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 4h12v2H6zm5 10v6h2v-6h5l-6-6-6 6z"/></svg>
+                  <svg xmlns="" viewBox="0 0 24 24"><path d="M6 4h12v2H6zm5 10v6h2v-6h5l-6-6-6 6z"/></svg>
               </a>
-          </div> <!-- end ss-go-top -->
+          </div> --> <!-- end ss-go-top -->
       </footer>
 
 
-      <!-- Java Script
-      ================================================== -->
-      <script src="js/jquery-3.2.1.min.js"></script>
-      <script src="js/plugins.js"></script>
-      <script src="js/main.js"></script>
+      <script src="{% static 'js/main.js' %}"></script>
     </body>
 </html>

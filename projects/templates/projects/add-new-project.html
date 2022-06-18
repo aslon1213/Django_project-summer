@@ -1,13 +1,24 @@
 {%extends 'main.html' %}
 
 {%block content%}
-<h1>Project Form</h1>
+<div class="auth">
+  <div class="card">
     <form method = "POST" enctype="multipart/form-data">
         {%csrf_token%}
-        {{form.as_p}}
+        {% for field in form %}
+            <div class="form__field">
+                <label for="formInput#text">{{field.label}}</label>
+                {{field}}
+                {% for error in field.errors %}
+                <p style="color: red;">{{error}}</p>
+                {% endfor %}
+            </div>
+          {% endfor %}
         <input type="submit">
         <button><a href="{% url 'projects' %}">Go Back</a></button>
     </form>
+  </div>
+</div>
 
 {%endblock%}
 
