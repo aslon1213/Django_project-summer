@@ -1,10 +1,11 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from .utils import search_in_profiles, paginate_profiles
 
 def loginUser(request):
@@ -154,3 +155,46 @@ def deleteSkill(request, pk):
     
     context = {'object':skill}
     return render(request, 'delete_template.html', context)
+
+
+@login_required(login_url='login')
+def inbox(request):
+    profile = request.user.profile
+    messages_set = profile.messages.all()
+    messages_count = messages_set.filter(is_read = False).count()
+    context = {'messages':messages_set,'messages_count':messages_count }
+
+    return render(request, 'users/inbox.html', context)
+
+
+@login_required(login_url='login')
+def single_message(request, pk):
+    profile = request.user.profile
+    message_required = profile.messages.get(id=pk)
+    context = {
+        'message':message_required
+    }
+    if message_required.is_read == False:
+        message_required.is_read = True
+        message_required.save()
+    return render(request, 'users/message.html', context)
+
+
+@login_required(login_url='login')
+def create_message(request,pk):
+    recipient = Profile.objects.get(id=pk)
+    sender = request.user.profile
+    form = MessageForm()
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        ms = form.save(commit=False)
+        ms.sender = sender
+        ms.receiver_p = recipient
+        ms.save()
+        messages.success(request, 'Message was send succesfully')
+        return redirect('single_profile', recipient.id)
+    context = {'recipient':recipient, 'sender':sender, 'form':form}
+    return render(request, 'users/create_message.html', context)
+
+    
