@@ -1,7 +1,5 @@
-from email.policy import default
+
 from enum import unique
-from tarfile import BLKTYPE
-from uuid import UUID
 import uuid
 from django.db import models
 from users.models import Profile
