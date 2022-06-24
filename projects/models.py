@@ -36,14 +36,23 @@ class Project(models.Model):
         ordering = ['created']
 
     def update_votes(self):
-        self.vote_total = self.review_set.count()
-        upvotes = self.review_set.filter(value = 'Up').count()
-        self.vote_ratio = int(upvotes / self.vote_total * 100)
-        self.save()
+        if self.vote_total > 0:
+            self.vote_total = self.review_set.count()
+            upvotes = self.review_set.filter(value = 'Up').count()
+            self.vote_ratio = int(upvotes / self.vote_total * 100)
+            self.save()
 
     def get_reviewers(self):
         reviewers = self.review_set.all().values_list('owner__id', flat=True)
         return reviewers
+
+    @property
+    def project_image(self):
+        try:
+            url = self.featured_image.url
+        except:
+            url = '#'
+        return url
 class Review(models.Model):
     """"""
     VOTE_TYPE = (

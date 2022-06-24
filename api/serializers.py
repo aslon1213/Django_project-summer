@@ -24,8 +24,14 @@ class TagsSerializer(serializers.ModelSerializer):
 class ProjectsSerializer(serializers.ModelSerializer):
     owner = ProfilesSerializer(many = False)
     tags = TagsSerializer(many = True)
+    reviews = serializers.SerializerMethodField()
+
     class Meta:
         model = Project
         fields = '__all__'
     
 
+    def get_reviews(self, obj):
+        reviews = obj.review_set.all()
+        serializer = ReviewsSerializer(reviews, many = True)
+        return serializer.data

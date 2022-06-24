@@ -162,7 +162,7 @@ def inbox(request):
     profile = request.user.profile
     messages_set = profile.messages.all()
     messages_count = messages_set.filter(is_read = False).count()
-    context = {'messages':messages_set,'messages_count':messages_count }
+    context = {'Messages':messages_set,'messages_count':messages_count }
 
     return render(request, 'users/inbox.html', context)
 
