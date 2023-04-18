@@ -1,11 +1,11 @@
 
 from django.forms import ModelForm
-from .models import Project, Review
+from .models import Project, Review, Tag
 
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['title', 'description', 'demo_link', 'source_link', 'featured_image']
+        fields = ['title', 'description', 'demo_link', 'source_link', 'featured_image',]
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
@@ -27,3 +27,9 @@ class ReviewForm(ModelForm):
 
             for name, field in self.fields.items():
                 field.widget.attrs.update({'class': 'input'})
+
+    
+class TagForm(ModelForm):
+    class Meta:
+        model = Tag
+        fields = '__all__'

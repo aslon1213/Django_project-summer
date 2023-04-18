@@ -34,6 +34,14 @@ class Profile(models.Model):
     class Meta:
         ordering = ['created']
 
+    @property
+    def profile_img(self):
+        try:
+            url = self.profile_image.url
+        except:
+            url = '#'
+        return url
+
 
 class Skill(models.Model):
     owner = models.ForeignKey(

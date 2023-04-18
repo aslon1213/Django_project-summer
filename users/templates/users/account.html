@@ -11,7 +11,8 @@
           <div class="card__body dev">
             <a class="tag tag--pill tag--main settings__btn" href="{% url 'update_account' %}"><i class="im im-edit"></i>
               Edit</a>
-            <img class="avatar avatar--xl dev__avatar" src="{{profile.profile_image.url}}" />
+            <img class="avatar avatar--xl dev__avatar" src="{{profile.profile_img}}" />
+            <h2 class="dev__name">{{profile.username}}</h2>
             <h2 class="dev__name">{{profile.name}}</h2>
             <p class="dev__title">{{profile.short_into}}</p>
             <p class="dev__location">Based in {{profile.location}}</p>
@@ -91,11 +92,18 @@
           {% for project in projects %}
           <tr>
             <td class="settings__thumbnail">
-              <a href="{% url 'project' project.id %}"><img src="{{project.featured_image.url}}" alt="Project Thumbnail" /></a>
+              <a href="{% url 'project' project.id %}"><img src="{{project.project_image}}" alt="Project Thumbnail" /></a>
             </td>
             <td class="settings__tableInfo">
               <a href="{% url 'project' project.id %}">{{project.title}}</a>
               <p>{{project.description|slice:"150"}}</p>
+              <div class="project__tags">
+                {% for tag in project.tags.all %}
+                <span class="tag tag--pill tag--main">
+                    <small>{{tag}}</small>
+                </span>
+                {% endfor %}
+              </div>
             </td>
             <td class="settings__tableActions">
               <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-project' project.id %}"><i

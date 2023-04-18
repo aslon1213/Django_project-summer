@@ -5,9 +5,9 @@
 <!-- Main Section -->
 <main class="inbox my-xl">
     <div class="content-box">
-      <h3 class="inbox__title">New Messages(<span>{{messages.messages_count}}</span>)</h3>
+      <h3 class="inbox__title">New Messages(<span>{{messages_count}}</span>)</h3>
       <ul class="messages">
-        {%for message in messages%}
+        {%for message in Messages%}
         {%if message.is_read == False %}
         <li class="message message--unread">
         {%else%}
