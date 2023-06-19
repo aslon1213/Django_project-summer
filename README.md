@@ -4,7 +4,7 @@
 
 
 # Installation
-* 1 - clone repo https://github.com/aslon1213/Django_project_for_summer.git
+* 1 - clone repo https://github.com/aslon1213/Django_project-summer.git
 * 2 - cd into project "cd django-2021"
 * 3 - create a virtual environment and activate
 *  - pip install pipenv
